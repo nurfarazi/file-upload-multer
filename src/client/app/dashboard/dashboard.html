@@ -1,0 +1,32 @@
+<section id="dashboard-view" class="mainbar jeeon-container">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="j-title">
+                    File Uploader Service
+                </div>
+            </div>
+            <div class="row">
+                <form name="vm.upload_form">
+                    Single Image with validations
+                    <input
+                        type="file"
+                        ngf-select
+                        ng-model="vm.file"
+                        name="file"
+                        ngf-pattern="'image/*'"
+                        accept="image/*"
+                        ngf-max-size="20MB"
+                        ngf-multiple="true"
+                    />
+                    <div ng-if="vm.file.length">Image thumbnail: <img ng-repeat="iol in vm.file" style="width: 100px;" ngf-thumbnail="iol"/></div>
+                    <i ng-show="vm.upload_form.file.$error.required">*required</i><br>
+                    <i ng-show="vm.upload_form.file.$error.maxSize">File too large
+                        {{vm.file.size / 1000000|number:1}}MB: max 20M</i>
+                    <button type="submit" ng-click="vm.submit()">submit</button>
+                    <p>{{vm.progress}}</p>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>
